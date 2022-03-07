@@ -14,6 +14,12 @@ Inspired by my Python package [zipbomb](https://github.com/donno2048/zipbomb).
 gcc -o zipbomb main.c
 ```
 
+### Without cloning
+
+```sh
+wget https://raw.githubusercontent.com/donno2048/czipbomb/master/main.c -O- | gcc -xc - -o zipbomb
+```
+
 ## Usage
 
 ```sh

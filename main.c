@@ -1,10 +1,13 @@
+#ifdef _WIN32
+#warning "Won't work on Windows"
+#endif
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #define S(i) (1LL << i)
-#define T(i) strtoll(argv[i], 0, 10)
+#define T(i) argc > i ? strtoll(argv[i], 0, 10) : 1000
 #define U(x) x & 255, x >> 8 & 255
-#define V Y(I), Y(C), Y(H)
+#define V Y(I), Y(C + 14), Y(H)
 #define W "\x14%c%c%c\x08"X
 #define X "%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c"
 #define Y(x) U(x), x >> 16 & 255, x >> 24 & 255
@@ -16,7 +19,7 @@ int f(long long x[], long long y) {
 }
 int main(int argc, char *argv[]) {
 	int i, j;
-	long long A = S(32) - 1, B = T(1), C = T(2), D[33], d[33], E[8], F = C * 1032 - 14447, G[33], g[33], H = F;
+	long long A = S(32) - 1, B = T(1), C = T(2), D[33], d[33], E[8], F = C * 1032 + 1, G[33], g[33], H = F;
 	for (i = 0; i < 33; i++) D[i] = S(i);
 	for (i = 0; i < 8; i++) {
 		E[i] = 0;
@@ -34,7 +37,7 @@ int main(int argc, char *argv[]) {
 	}
 	int I = ~f(D, 2 * A + 1) & A;
 	long long J = printf("PK\3\4"W"\1%c%c%c0\xed\xc0\x81\x08%c%c%c\xc0\xb0\xfbS_d\x0b", Z, Z, V, Z, 0, 0);
-	for (i = 0; i < C - 15; i++) J += printf("%c", 0);
+	for (i = 0; i < C - 1; i++) J += printf("%c", 0);
 	J += printf("`");
 	long long K = J;
 	for (i = 0; i < B; i++) {

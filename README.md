@@ -4,10 +4,6 @@ Zipbomb using C.
 
 Inspired by my Python package [zipbomb](https://github.com/donno2048/zipbomb).
 
-```diff
-- Only works on Linux.
-```
-
 ## Compile
 
 ```sh

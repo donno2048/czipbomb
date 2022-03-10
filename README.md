@@ -23,7 +23,9 @@ wget https://raw.githubusercontent.com/donno2048/czipbomb/master/main.c -O- | gc
 ## Usage
 
 ```sh
-./zipbomb number_of_files size_in_kilobytes > output.zip
-./zipbomb number_of_files > output.zip # run with default size (1MB)
-./zipbomb > output.zip # run with default values (1000 files, 1MB)
+./zipbomb -h # show help
+./zipbomb name.zip number_of_files size_in_kilobytes # create a zipbomb
+./zipbomb name.zip number_of_files # run with default size (1MB)
+./zipbomb name.zip # run with default values (1000 files, 1MB)
+./zipbomb # run with default argumets (output.zip, 1000 files, 1MB)
 ```

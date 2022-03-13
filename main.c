@@ -31,8 +31,10 @@ int main(int argc, char *argv[]) {
 	for (i = 0; i < 24; i++) G[i + 8] = S(i);
 	G[32] = A + 1;
 	while (F) {
-		for (i = 0; i < 33; i++) d[i] = D[i];
-		for (i = 0; i < 33; i++) g[i] = G[i];
+		for (i = 0; i < 33; i++) {
+			d[i] = D[i];
+			g[i] = G[i];
+		}
 		if (F & 1) for (i = 0; i < 33; i++) D[i] = f(d, G[i]);
 		for (i = 0; i < 33; i++) G[i] = f(g, G[i]);
 		F >>= 1;

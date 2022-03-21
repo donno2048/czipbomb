@@ -10,9 +10,9 @@
 #define Y(x) U(x), x >> 16 & 255, x >> 24 & 255
 #define Z 0, 0, 0, 0
 #define write(...) fprintf(file, __VA_ARGS__)
-int f(const unsigned long x[], const unsigned long y) {
+int f(const unsigned long *x, const unsigned long y) {
 	int output = 0;
-	for (char i = 0; i < 33; i++) output ^= x[i] * (y >> i & 1);
+	for (char i = 0; i < 33; i++) output ^= *(x + i) * (y >> i & 1);
 	return output;
 }
 int main(int argc, char *argv[]) {

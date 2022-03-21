@@ -1,9 +1,4 @@
 #include <stdio.h>
-unsigned int strtoi(char *str) {
-	unsigned int i = 0;
-	while (*str++) i = i * 10 + (*str - '0');
-	return i;
-}
 #define S(i) (1LL << i)
 #define T(i) argc > i ? strtoi(argv[i]) : 1000
 #define U(x) x & 255, x >> 8 & 255
@@ -13,6 +8,11 @@ unsigned int strtoi(char *str) {
 #define Y(x) U(x), x >> 16 & 255, x >> 24 & 255
 #define Z 0, 0, 0, 0
 #define write(...) fprintf(file, __VA_ARGS__)
+unsigned int strtoi(char *str) {
+	unsigned int i = 0;
+	while (*str++) i = i * 10 + (*str - '0');
+	return i;
+}
 int f(const unsigned long *x, const unsigned long y) {
 	int output = 0;
 	for (char i = 0; i < 33; i++) output ^= *(x + i) * (y >> i & 1);

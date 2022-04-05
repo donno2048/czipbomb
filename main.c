@@ -10,7 +10,7 @@
 #define write(...) fprintf(file, __VA_ARGS__)
 unsigned int strtoi(char *str) {
 	unsigned int i = 0;
-	while (*str) i = i * 10 + (*str - '0'), str++;
+	while (*str) i = i * 10 + (*(str++) - '0');
 	return i;
 }
 int f(const unsigned long *x, const unsigned long y) {

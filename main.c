@@ -15,7 +15,7 @@ unsigned int strtoi(char *str) {
 }
 int f(const unsigned long *x, const unsigned long y) {
 	int output = 0;
-	for (char i = 0; i < 33; i++) output ^=* (x + i) * (y >> i & 1);
+	for (char i = 32; i--;) output ^=* (x + i) * (y >> i & 1);
 	return output;
 }
 int main(int argc, char *argv[]) {
@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
 	unsigned int i, F = C * 1032 + 1;
 	const unsigned int H = F;
 	unsigned long D[33], d[33], E[8], G[33], g[33];
-	for (i = 0; i < 33; i++) D[i] = S(i);
+	for (i = 32; i--;) D[i] = S(i);
 	for (i = 0; i < 8; i++) {
 		E[i] = 0;
 		for (char j = 0; j < 8; j++) E[i] = E[i] >> 1 ^ 3988292384 * ((1 << i >> j ^ E[i]) & 1);
@@ -34,16 +34,16 @@ int main(int argc, char *argv[]) {
 	for (i = 0; i < 24; i++) G[i + 8] = S(i);
 	G[32] = A + 1;
 	for (; F; F >>= 1) {
-		for (i = 0; i < 33; i++) {
+		for (i = 32; i--;) {
 			d[i] = D[i];
 			g[i] = G[i];
 		}
-		if (F & 1) for (i = 0; i < 33; i++) D[i] = f(d, G[i]);
-		for (i = 0; i < 33; i++) G[i] = f(g, G[i]);
+		if (F & 1) for (i = 32; i--;) D[i] = f(d, G[i]);
+		for (i = 32; i--;) G[i] = f(g, G[i]);
 	}
 	const int I = ~f(D, 2 * A + 1) & A;
 	int J = write("PK\3\4"W"\1%c%c%c0\xed\xc0\x81\x08%c%c%c\xc0\xb0\xfbS_d\x0b", Z, Z, V, Z, 0, 0);
-	for (i = 0; i < C - 1; i++) J += write("%c", 0);
+	for (i = C; i --> 1;) J += write("%c", 0);
 	J += write("`");
 	const int K = J;
 	for (i = 0; i < B; i++) {

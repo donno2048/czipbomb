@@ -21,10 +21,10 @@ int f(const unsigned long *x, const unsigned long y) {
 int main(int argc, char *argv[]) {
 	if (argc > 1 && argv[1][0] == '-' && argv[1][1] == 'h') return printf("Usage: ./zipbomb   [name of output zip]   [number of files]\t  [size in kilobytes of each file]\nDefaults:\t\toutput.zip\t\t1000\t\t\t\t1000\n");
 	FILE *file = fopen(argc > 1 ? argv[1] : "output.zip", "w");
+	unsigned long D[33], d[33], E[8], G[33], g[33];
 	const unsigned int A = S(32) - 1, B = T(2), C = T(3); 
 	unsigned int i, F = C * 1032 + 1;
 	const unsigned int H = F;
-	unsigned long D[33], d[33], E[8], G[33], g[33];
 	for (i = 32; i--;) D[i] = S(i);
 	for (i = 0; i < 8; i++) {
 		E[i] = 0;

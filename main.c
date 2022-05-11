@@ -46,12 +46,10 @@ int main(int argc, char *argv[]) {
 	for (i = C; i --> 1;) J += write("%c", 0);
 	J += write("`");
 	const int K = J;
-	for (i = 0; i < B; i++) {
-		char num[100];
-		sprintf(num, "%d", i);
-		char size = !i;
-		for (unsigned int j = i; j; j /= 10) size++;
-		J += write("PK\1\2\x14%c"W"%c"X, Z, Z, 0, V, U(size), Z, Z, Z, Z) + write(num);
+	for (i = 0; i < B;) {
+		char num[100], j = 0;
+		for (unsigned int temp = ++i; temp; j++, temp /= 10) num[j] = temp % 10 + '0'; // reversed but who cares
+		J += write("PK\1\2\x14%c"W"%c"X, Z, Z, 0, V, U(j), Z, Z, Z, Z) + write(num);
 	}
 	write("PK\5\6%c"X, Z, U(B), U(B), Y(J-K), Y(K), 0, 0);
 	return fclose(file);

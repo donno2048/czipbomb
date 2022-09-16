@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
 		G[i] = E[i];
 	}
 	for (i = 0; i < 24; i++) G[i + 8] = S(i);
-	G[32] = A + 1;
+	G[32] = 0;
 	for (; F; F >>= 1) {
 		for (i = 32; i--;) {
 			d[i] = D[i];

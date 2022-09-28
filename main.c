@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
 		if (F & 1) for (i = 32; i--;) D[i] = f(d, G[i]);
 		for (i = 32; i--;) G[i] = f(g, G[i]);
 	}
-	const int I = ~f(D, 2 * A + 1) & A;
+	const int I = ~f(D, A) & A;
 	int J = write("PK\3\4"W"\1%c%c%c0\xed\xc0\x81\x08%c%c%c\xc0\xb0\xfbS_d\x0b", Z, Z, V, Z, 0, 0);
 	for (i = C; i --> 1;) J += write("%c", 0);
 	J += write("`");
